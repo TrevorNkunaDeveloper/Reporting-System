@@ -1,0 +1,25 @@
+{% extends 'reports/base.html' %}
+
+{% block title %}Upload Transactions{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3 mt-5">
+        <h2>Upload Transactions</h2>
+        <form method="post" enctype="multipart/form-data" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.start_date.label_tag }} {{ form.start_date }}
+            </div>
+            <div class="form-group">
+                {{ form.end_date.label_tag }} {{ form.end_date }}
+            </div>
+            <div class="form-group">
+                {{ form.file.label_tag }} {{ form.file }}
+            </div>
+            <button type="submit" class="btn btn-primary" name="view_report">View Report</button>
+            <button type="submit" class="btn btn-secondary" name="save_pdf">Save as PDF</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

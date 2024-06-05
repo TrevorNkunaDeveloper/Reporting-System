@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .metrics,
+        .transactions {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Report</h2>
+        <div class="metrics">
+            <h3>Metrics</h3>
+            <ul>
+                <li>Total Revenue: {{ metrics.total_revenue }}</li>
+                <li>Number of Permits: {{ metrics.number_of_permits }}</li>
+                <li>Number of Captured Permits: {{ metrics.number_of_captured_permits }}</li>
+                <li>Percentage of Captured Permits: {{ metrics.percentage_captured }}%</li>
+            </ul>
+        </div>
+        <div class="transactions">
+            <h3>Transaction Details</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date and Time Received</th>
+                        <th>Date of Capture</th>
+                        <th>Date of Issue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in report.itertuples %}
+                    <tr>
+                        <td>{{ transaction.dbCreateTime }}</td>
+                        <td>{{ transaction.dbAppDate }}</td>
+                        <td>{{ transaction.dbIssueTime }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+{% extends 'reports/base.html' %}
+
+{% block title %}Report{% endblock %}
+
+{% block content %}
+<h2>Report</h2>
+<h3>Metrics</h3>
+<ul>
+    <li>Total Revenue Collected (Rands): R {{ metrics.total_revenue }}</li>
+    <li>Number of Permits Issued: {{ metrics.number_of_permits_issued }}</li>
+    <li>Number of Permits Captured and Issued within 48 Hours: {{ metrics.number_of_captured_permits }}</li>
+    <li>Percentage of Permits Captured and Issued within 48 Hours: {{ metrics.percentage_captured }}%</li>
+</ul>
+<h3>Transaction Details</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Permit Number</th>
+            <th>Date and Time Received</th>
+            <th>Date of Capture</th>
+            <th>Date of Issue</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in report %}
+        <tr>
+            <td>{{ transaction.dbPermitNo }}</td>
+            <td>{{ transaction.dbCreateTime }}</td>
+            <td>{{ transaction.dbAppDate }}</td>
+            <td>{{ transaction.dbIssueTime }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
